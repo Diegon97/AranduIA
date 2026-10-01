@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Manual de Asistentes IA (AI_CONTEXT)
+    url: https://github.com/Diegon97/AranduIA/blob/main/AI_CONTEXT.md
+    about: Leé el manual de contexto para contribuir con agentes de IA o LLMs.
+  - name: 💬 Comunidad y Preguntas
+    url: https://github.com/Diegon97/AranduIA/discussions
+    about: Espacio para debate pedagógico, preguntas y propuestas comunitarias.

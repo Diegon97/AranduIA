@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AranduIA — Educación Soberana Paraguay</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1b263b">
+</head>
+<body>
+
+  <!-- Encabezado con controles de accesibilidad -->
+  <header class="app-header">
+    <div class="logo-section">
+      <h1>🇵🇾 AranduIA</h1>
+      <span class="subtitle">Ecosistema Abierto de IA Educativa · Offline-First</span>
+    </div>
+    <div class="accessibility-bar">
+      <button id="toggle-tea" class="btn-toggle" title="Activa lenguaje literal, pictogramas y calma visual">
+        🧩 Modo TEA / Inclusión
+      </button>
+      <button id="toggle-dyslexia" class="btn-toggle" title="Tipografía para mayor legibilidad">
+        🔤 Fuente Legible
+      </button>
+      <button id="font-decrease" class="btn-action" title="Reducir tamaño de letra">A-</button>
+      <button id="font-increase" class="btn-action" title="Aumentar tamaño de letra">A+</button>
+      <span id="conn-status" class="picto-tag" style="background:#dcfce7; color:#166534;">🟢 En Línea</span>
+    </div>
+  </header>
+
+  <!-- Pestañas de Navegación -->
+  <nav class="tabs-nav">
+    <button class="tab-btn active" data-tab="tutor">🧑‍🎓 Tutor Socrático (Estudiantes)</button>
+    <button class="tab-btn" data-tab="docente">👩‍🏫 Copiloto del Aula (Docentes)</button>
+    <button class="tab-btn" data-tab="glosario">🇵🇾 Glosario Jopara</button>
+  </nav>
+
+  <!-- Contenido Principal -->
+  <main class="main-content">
+
+    <!-- TAB 1: TUTOR SOCRÁTICO (ESTUDIANTES) -->
+    <section id="pane-tutor" class="tab-pane active">
+      <div class="tutor-container">
+        <!-- Barra de apoyo visual y pictogramas -->
+        <div class="pictograms-bar">
+          <span style="font-weight:600; font-size:0.85rem; color:var(--text-muted);">Apoyo Visual:</span>
+          <span class="picto-tag" onclick="insertPrompt('¿Cómo podemos sumar esto?')">➕ Sumar</span>
+          <span class="picto-tag" onclick="insertPrompt('¿Cómo podemos restar esto?')">➖ Restar</span>
+          <span class="picto-tag" onclick="insertPrompt('Quiero entender este texto')">📖 Leer</span>
+          <span class="picto-tag" onclick="insertPrompt('¿Cuál es la idea principal?')">💡 Idea</span>
+          <span class="picto-tag" onclick="insertPrompt('Tengo una duda con mi tarea')">❓ Pregunta</span>
+          <span class="picto-tag" onclick="insertPrompt('¿Podemos hacer una pausa?')">⏳ Pausa</span>
+        </div>
+
+        <!-- Chat Box -->
+        <div id="chat-box" class="chat-box">
+          <div class="chat-msg tutor">
+            <strong>AranduIA:</strong> ¡Mba'éichapa! Soy tu tutor de aprendizaje. No te voy a dar las respuestas servidas porque sé que tenés la capacidad de descubrir la solución. Contame: ¿qué tema o ejercicio estás estudiando hoy?
+          </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-area">
+          <input type="text" id="student-input" placeholder="Escribí tu pregunta o ejercicio aquí..." autocomplete="off">
+          <button id="btn-send-student">Preguntar</button>
+          <button id="btn-speech" class="btn-action" title="Escuchar respuesta en voz alta">🔊 Voz</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: COPILOTO DEL AULA (DOCENTES) -->
+    <section id="pane-docente" class="tab-pane">
+      <div class="docente-form">
+        <h3>Planificador de Clases & Rúbricas (MEC Paraguay)</h3>
+        <p style="font-size:0.9rem; color:var(--text-muted);">
+          Generá en segundos planes de clase alineados a las capacidades oficiales del MEC con ajustes curriculares para TEA.
+        </p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="doc-tema">Tema o Contenido de la Clase:</label>
+            <input type="text" id="doc-tema" placeholder="Ej: Suma de fracciones homogéneas">
+          </div>
+          <div class="form-group">
+            <label for="doc-materia">Área / Materia:</label>
+            <select id="doc-materia">
+              <option value="Matemática">Matemática</option>
+              <option value="Lengua Castellana">Lengua Castellana</option>
+              <option value="Lengua Guaraní">Lengua Guaraní</option>
+              <option value="Ciencias de la Naturaleza">Ciencias de la Naturaleza</option>
+              <option value="Ciencias Sociales">Ciencias Sociales</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="doc-grado">Nivel / Grado:</label>
+            <select id="doc-grado">
+              <option value="1° Ciclo EEB (1° a 3°)">1° Ciclo EEB (1° a 3° grado)</option>
+              <option value="2° Ciclo EEB (4° a 6°)" selected>2° Ciclo EEB (4° a 6° grado)</option>
+              <option value="3° Ciclo EEB (7° a 9°)">3° Ciclo EEB (7° a 9° grado)</option>
+              <option value="Bachillerato">Bachillerato (1° a 3° curso)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <input type="checkbox" id="doc-tea" checked>
+          <label for="doc-tea">Incluir Ajustes Curriculares Individualizados (ACI) para TEA / Inclusión</label>
+        </div>
+
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button id="btn-gen-plan" class="btn-action" style="background:var(--primary); color:white; padding:0.6rem 1.2rem;">
+            📄 Generar Plan de Lección MEC
+          </button>
+          <button id="btn-gen-rubrica" class="btn-action" style="background:#0f766e; color:white; padding:0.6rem 1.2rem;">
+            📊 Generar Rúbrica de Evaluación
+          </button>
+        </div>
+
+        <!-- Resultado del plan -->
+        <div id="plan-output" class="plan-result" style="display:none;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <h3 id="plan-title">Plan de Clase</h3>
+            <button class="btn-action" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+          </div>
+          <div id="plan-details"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: GLOSARIO JOPARA -->
+    <section id="pane-glosario" class="tab-pane">
+      <h3>Glosario Pedagógico Bilingüe (Español ↔ Guaraní Jopara)</h3>
+      <p style="font-size:0.9rem; color:var(--text-muted);">
+        Términos de aula cotidianos para enriquecer la comunicación bilingüe respetando la identidad cultural.
+      </p>
+      <div id="glossary-container" class="glossary-grid">
+        <!-- Renderizado dinámico -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p><strong>AranduIA</strong> — Proyecto Soberano de Código Abierto para la Educación Paraguaya.</p>
+    <p>Diseñado bajo la Ley N° 7593/2025 de Protección de Datos Personales · Licencia MIT</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

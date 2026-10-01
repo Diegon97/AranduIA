@@ -1,0 +1,20 @@
+services:
+  arandu-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: arandu_ia_app
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_NAME=AranduIA
+      - APP_ENV=production
+      - LLM_PROVIDER=local_rules
+      - ENFORCE_DATA_MINIMIZATION=true
+    restart: unless-stopped
+    volumes:
+      - arandu_data:/app/data
+
+volumes:
+  arandu_data:
+    driver: local
